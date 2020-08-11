@@ -133,6 +133,7 @@
                 placeholder="请输入兑换码"
                 class="input fl"
                 @keyup.enter.native="apiCodeState"/>
+                <el-button type="primary" icon="el-icon-refresh" @click="refurbish" class="refurbish"></el-button>
           </div> 
           <div class="btn_box">
             <div>
@@ -224,7 +225,7 @@
             <el-table-column label="操作" fixed="right" width="120" prop="audit_status" align="center">
               <template slot-scope="scope">
                 <el-button size="mini" type="danger" @click="remove(scope.row)">删除</el-button>
-                <el-button size="mini" type="primary" @click="codeCompile(scope.row)" v-if="scope.row.state == 0" style="margin-top: 10px;">核销券码</el-button>
+                <el-button size="mini" type="primary" @click="codeCompile(scope.row)" v-if="scope.row.state == 1" style="margin-top: 10px;">核销券码</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -369,6 +370,13 @@ export default {
     },
     apiCodeState(){
      this.apiCode(this.codeId)
+    },
+    refurbish(){
+      this.dialogList = {
+        state: null,
+        code: null
+      },
+      this.apiCode(this.codeId)
     },
     submitImportExcel() {
       if(this.number == 1){
@@ -678,6 +686,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.refurbish{
+  margin-left: 100px;
+}
 .upload-demo {
     text-align: center;
     padding: 0 100px;

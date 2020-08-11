@@ -89,11 +89,11 @@
           <span>{{ scope.row.name }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="订单号" width="190" prop="orderCode" align="center">
+      <!-- <el-table-column label="订单号" width="190" prop="orderCode" align="center">
         <template slot-scope="scope">
           <span>{{ scope.row.orderCode }}</span>
         </template>
-      </el-table-column>
+      </el-table-column> -->
       <el-table-column label="第三方平台订单号" width="220" prop="orderId" align="center">
         <template slot-scope="scope">
           <span>{{ scope.row.orderId }}</span>

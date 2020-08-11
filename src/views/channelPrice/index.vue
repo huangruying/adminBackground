@@ -100,11 +100,16 @@
           <span>{{ scope.row.area }}</span>
         </template>
       </el-table-column>
-      <!-- <el-table-column label="价格" prop="originalPrice" align="center">
+      <el-table-column label="服务类型" prop="dotType" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.originalPrice }}</span>
+          <span>{{ scope.row.dotType }}</span>
         </template>
-      </el-table-column> -->
+      </el-table-column>
+      <el-table-column label="服务名称" prop="dotsType" align="center">
+        <template slot-scope="scope">
+          <span>{{ scope.row.dotsType }}</span>
+        </template>
+      </el-table-column>
       <el-table-column label="优惠价" prop="price" align="center">
         <template slot-scope="scope">
           <span>{{ scope.row.price }}</span>
@@ -118,11 +123,6 @@
       <el-table-column label="失效时间" prop="toTime" align="center">
         <template slot-scope="scope">
           <span>{{ scope.row.toTime }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="创建时间" prop="createTime" align="center">
-        <template slot-scope="scope">
-          <span>{{ scope.row.createTime }}</span>
         </template>
       </el-table-column>
       <el-table-column label="操作" width="200" fixed="right" prop="audit_status" align="center">
@@ -188,11 +188,16 @@
                   <span>{{ scope.row.channelName }}</span>
                 </template>
               </el-table-column>
-              <!-- <el-table-column label="价格" prop="originalPrice" align="center">
+              <el-table-column label="服务类型" prop="dotType" align="center">
                 <template slot-scope="scope">
-                  <span>{{ scope.row.originalPrice }}</span>
+                  <span>{{ scope.row.dotType }}</span>
                 </template>
-              </el-table-column> -->
+              </el-table-column>
+              <el-table-column label="服务名称" prop="dotsType" align="center">
+                <template slot-scope="scope">
+                  <span>{{ scope.row.dotsType }}</span>
+                </template>
+              </el-table-column>
               <el-table-column label="优惠价" prop="price" align="center">
                 <template slot-scope="scope">
                   <span>{{ scope.row.price }}</span>
@@ -252,7 +257,7 @@
                   </el-select>
               </el-form-item>
               <el-form-item label="服务名称：" prop="carwashsId" style="width: 100%">
-                  <el-select v-model="itemObj.carwashsId" placeholder="请选择服务名称">
+                  <el-select v-model="itemObj.carwashsId" placeholder="请选择服务名称" @change="changeT">
                     <el-option
                       v-for="item in menu2List"
                       :label="item.dotsType"
@@ -265,20 +270,18 @@
                   <el-input v-model="itemObj.price" style="width: 200px;" placeholder="请输入金额"></el-input>
               </el-form-item>
               <el-form-item label="有效时间" prop="fromTime" style="width: 100%">
+                <!--  default-time="23:59:59" -->
                   <el-date-picker
                     v-model="itemObj.fromTime"
-                    type="datetime"
-                    default-time="23:59:59"
+                    type="date"
                     value-format="yyyy-MM-dd HH:mm:ss"
-                    :picker-options="pickerOptions"
                     placeholder="有效时间">
                   </el-date-picker>
               </el-form-item>
               <el-form-item label="过期时间" prop="toTime" style="width: 100%">
                   <el-date-picker
                     v-model="itemObj.toTime"
-                    type="datetime"
-                    default-time="23:59:59"
+                    type="date"
                     value-format="yyyy-MM-dd HH:mm:ss"
                     :picker-options="pickerOptions"
                     placeholder="过期时间">
@@ -387,6 +390,9 @@ export default {
     this.selectInfo()
   },
   methods: {
+    changeT(){
+      this.$forceUpdate()
+    },
     apiFindCarwashType(){
       findCarwashType().then(res=>{
         if(res.code == 200){

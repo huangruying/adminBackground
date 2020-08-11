@@ -145,11 +145,6 @@
           <span>{{ scope.row.area }}</span>
         </template>
       </el-table-column>
-      <!-- <el-table-column label="网点名称" prop="dotName" align="center">
-        <template slot-scope="scope">
-          <span>{{ scope.row.dotName }}</span>
-        </template>
-      </el-table-column> -->
       <el-table-column label="网点简称" prop="dotAbbreviation" align="center">
         <template slot-scope="scope">
           <span>{{ scope.row.dotAbbreviation }}</span>
@@ -178,6 +173,16 @@
       <el-table-column label="下单时间" prop="placeTime" align="center">
         <template slot-scope="scope">
           <span>{{ scope.row.placeTime }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="渠道价格" prop="channelMoney" align="center">
+        <template slot-scope="scope">
+          <span>{{ scope.row.channelMoney }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="平台价格" prop="servicerMoney" align="center">
+        <template slot-scope="scope">
+          <span>{{ scope.row.servicerMoney }}</span>
         </template>
       </el-table-column>
       <el-table-column label="备注" prop="remarks" align="center">

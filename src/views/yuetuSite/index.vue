@@ -300,11 +300,11 @@
 import { listStationsNameInfos , delStationsNameInfo , findYuyueProvinces , findYuyueCityByProvinceid , updateYuyueStationInfo , saveYuyueStationInfo , findStationsByIds , delYuyueStations , findHallService , updateYuyueStations , saveYuyueStations } from '@/api/guest/yuetuSite'
 import { dotOssUpload } from '@/api/nodeList'
 import Pagination from "@/components/Pagination"
-import lobby from "@/components/yuetuLobby"
+// import lobby from "@/components/yuetuLobby"
 export default {
   components: {
     Pagination,
-    lobby
+    // lobby
   },
   watch:{
     // 监听数据的变化输出 newV 改变的值，oldV 改变之前的值

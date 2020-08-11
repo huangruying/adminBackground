@@ -1,4 +1,5 @@
-import { login, logout, getInfo } from '@/api/user'
+// import { login, logout, getInfo } from '@/api/user'
+import { login, logout, getInfo , loginCopy , logoutCopy } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
@@ -20,12 +21,14 @@ const mutations = {
     state.name = ''
     state.avatar = ''
     state.roles = []
+    removeToken()
     localStorage.removeItem('data')
-    // Object.assign(state, getDefaultState())
+    Object.assign(state, getDefaultState())
   },
   SET_TOKEN: (state, data) => {
     state.data = data
     state.name = data.username
+    state.token = data.token
     // state.avatar = data.pic
     var data = JSON.stringify(data)
     localStorage.setItem('data',data)
@@ -46,11 +49,16 @@ const actions = {
   login({ commit }, userInfo) {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
+      loginCopy({ username: username.trim(), password: password }).then(response => {
         const { data } = response
+        setToken(data.token)
+        var arr = []
+        data.roles.forEach(v=>{
+          arr.push(v.code)
+        })
+        commit('SET_ROLES', arr)
         commit('SET_TOKEN', data)
         localStorage.setItem('username',data.username)
-        // setToken('4444')
         resolve()
       }).catch(error => {
         reject(error)
@@ -68,8 +76,13 @@ const actions = {
         name: obj.username,
         avatar: obj.pic
       }
-      const { roles, name, avatar } = data
-      commit('SET_ROLES', roles)
+      const { roles, name, avatar , token } = data
+      var arr = []
+      roles.forEach(v=>{
+        arr.push(v.code)
+      })
+      data.roles = arr
+      commit('SET_ROLES', arr)
       commit('SET_NAME', name)
       commit('SET_AVATAR', avatar)
       resolve(data)
@@ -102,7 +115,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       var obj = localStorage.getItem('data')
       var obj = JSON.parse(obj)
-      logout({
+      logoutCopy({
         username: obj.username
       }).then((res) => {
         removeToken() // must remove  token  first

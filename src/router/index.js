@@ -75,25 +75,25 @@ export const asyncRoutes = [
     path: '/autoWash',
     component: Layout,
     // redirect: '/autoWash/indent',
-    meta: { title: '车后服务管理后台', icon: 'example' , roles: ['carWash'] },
+    meta: { title: '车后服务管理后台', icon: 'example' , roles: ['vsadm'] },
     children: [
       {
         path: 'indent',
         component: () => import('@/views/routerView/index'), // Parent router-view
         // redirect: 'annual',
-        meta: { title: '订单管理', icon: 'example'},
+        meta: { title: '订单管理', icon: 'example' , roles:['vsadm_serviceorder']},
         children: [
           {
             path: 'annual',
             name: 'annual',
             component: () => import('@/views/annual/index'),
-            meta: { title: '年检订单', icon: 'dashboard' ,}
+            meta: { title: '年检订单', icon: 'dashboard' , roles:['vsadm_serviceorder_yearly']}
           },
           {
             path: 'serve',
             name: 'serve',
             component: () => import('@/views/serve/index'),
-            meta: { title: '服务订单', icon: 'dashboard' ,}
+            meta: { title: '服务订单', icon: 'dashboard' , roles:['vsadm_serviceorder_order']}
           }
         ]
       },
@@ -101,25 +101,25 @@ export const asyncRoutes = [
         path: '/nodeList',
         alwaysShow: true,
         component: () => import('@/views/routerView/index'), // Parent router-view
-        meta: { title: '网点管理', icon: 'example'},
+        meta: { title: '网点管理', icon: 'example' , roles: ['vsadm_servicer']},
         children: [
           {
             path: 'nodeList',
             name: 'nodeList',
             component: () => import('@/views/nodeList/index'),
-            meta: { title: '网点列表', icon: 'table' }
+            meta: { title: '网点列表', icon: 'table' , roles: ['vsadm_servicer_list']}
           },
           {
             path: 'account',
             name: 'account',
             component: () => import('@/views/account/index'),
-            meta: { title: '网点账号管理', icon: 'table' }
+            meta: { title: '网点账号管理', icon: 'table' , roles: ['vsadm_servicer_account']}
           },
           {
             path: 'institution',
             name: 'institution',
             component: () => import('@/views/institution/index'),
-            meta: { title: '所属机构管理', icon: 'table' }
+            meta: { title: '所属机构管理', icon: 'table' , roles: ['vsadm_servicer_mechanism']}
           },
         ]
       },
@@ -127,13 +127,13 @@ export const asyncRoutes = [
         path: '/basics',
         alwaysShow: true,
         component: () => import('@/views/routerView/index'), // Parent router-view
-        meta: { title: '基础数据管理', icon: 'example' , roles: ['ad'] },
+        meta: { title: '基础数据管理', icon: 'example' , roles: ['vsadm_basedata'] },
         children: [
             {
               path: 'nodeService',
               name: 'nodeService',
               component: () => import('@/views/nodeService/index'),
-              meta: { title: '网点服务项管理', icon: 'table' }
+              meta: { title: '网点服务项管理', icon: 'table' , roles: ['vsadm_servicer_list']}
             },
         ]
       },
@@ -155,39 +155,39 @@ export const asyncRoutes = [
         path: '/volume',
         alwaysShow: true,
         component: () => import('@/views/routerView/index'), // Parent router-view
-        meta: { title: '劵码管理', icon: 'example' },
+        meta: { title: '劵码管理', icon: 'example' , roles: ['vsadm_code']},
         children: [
           {
             path: 'volumeList',
             name: 'volumeList',
             component: () => import('@/views/volumeList/index'),
-            meta: { title: '劵码列表', icon: 'table' }
+            meta: { title: '劵码列表', icon: 'table' , roles: ['vsadm_code_list']}
           }
         ]
       },
       {
         path: '/priceControl',
         component: () => import('@/views/routerView/index'), // Parent router-view
-        meta: { title: '价格管理', icon: 'example' },
+        meta: { title: '价格管理', icon: 'example' , roles: ['vsadm_price']},
         children: [
           {
             path: 'channelPrice', 
             name: 'channelPrice',
             component: () => import('@/views/channelPrice/index'),
-            meta: { title: '渠道价格', icon: 'table' }
+            meta: { title: '渠道价格', icon: 'table' , roles: ['vsadm_channel_price']}
           },
           {
             path: 'platformPrice', 
             name: 'platformPrice',
             component: () => import('@/views/platformPrice/index'),
-            meta: { title: '平台价格', icon: 'table' }
+            meta: { title: '平台价格', icon: 'table' , roles: ['vsadm_servicer_price']}
           }
         ]
       },
       {
         path: '/reconciliation',
         component: () => import('@/views/routerView/index'), // Parent router-view
-        meta: { title: '对账管理', icon: 'example' },
+        meta: { title: '对账管理', icon: 'example' , roles: ['vsadm_reconciliation']},
         children: [
           // {
           //   path: 'channel',
@@ -199,13 +199,13 @@ export const asyncRoutes = [
             path: 'nodeReconciliation',
             name: 'nodeReconciliation',
             component: () => import('@/views/nodeReconciliation/index'),
-            meta: { title: '网点对账', icon: 'table' }
+            meta: { title: '网点对账', icon: 'table' , roles: ['vsadm_servicer_account']}
           },
           {
             path: 'insuranceReconciliation',
             name: 'insuranceReconciliation',
             component: () => import('@/views/insuranceReconciliation/index'),
-            meta: { title: '渠道对账', icon: 'table' }
+            meta: { title: '渠道对账', icon: 'table' , roles: ['vsadm_chennel_account']}
           }
         ]
       },
@@ -215,7 +215,7 @@ export const asyncRoutes = [
     path: '/service',
     component: Layout,
     // redirect: '/autoWash/indent',
-    meta: { title: '贵宾厅管理后台', icon: 'example' , roles:  ['service'] },
+    meta: { title: '贵宾厅管理后台', icon: 'example' , roles:  ['vipadm'] },
     children: [
       {
         path: 'service',
@@ -377,7 +377,7 @@ export const asyncRoutes = [
     path: '/channel',
     component: Layout,
     alwaysShow: true, // 日后可能会有新页面，保留侧边栏下拉，权限和用户管理保留一致
-    meta: { title: '渠道管理', icon: 'example' , roles:  ['userList'] },
+    meta: { title: '渠道管理', icon: 'example' , roles:  ['channeladm'] },
     children: [
       {
         path: 'channel',
@@ -392,7 +392,7 @@ export const asyncRoutes = [
     component: Layout,
     alwaysShow: true,
    // component: () => import('@/views/routerView/index'), // Parent router-view
-    meta: { title: '用户管理', icon: 'example' , roles:  ['userList'] },
+    meta: { title: '用户管理', icon: 'example' , roles:  ['permissionadm'] },
     children: [
       {
         path: '/userList',
@@ -406,6 +406,20 @@ export const asyncRoutes = [
         component: () => import('@/views/userWxList/index'),
         meta: { title: '微信用户列表'}
       },
+    ]
+  },
+  {
+    path: '/authority',
+    component: Layout,
+    alwaysShow: true,
+    meta: { title: '权限管理', icon: 'example' , roles:  ['permissionadm'] },
+    children: [
+      {
+        path: '/authorityList',
+        name: 'authorityList',
+        component: () => import('@/views/authorityList/index'),
+        meta: { title: '角色管理'}
+      }
     ]
   },
   // 404 page must be placed at the end !!!

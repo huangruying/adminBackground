@@ -2,8 +2,7 @@ import axios from 'axios'
 // import router from '../router'
 import { Message, MessageBox } from 'element-ui'
 import store from '../store'
-// import { getToken } from '@/utils/auth'
-
+import { getToken } from '@/utils/auth'
 // 创建axios实例
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // api 的 base_url
@@ -11,6 +10,40 @@ const service = axios.create({
 })
 // axios默认值
 service.defaults.headers.post['Content-Type'] = 'application/json'
+// request拦截器
+service.interceptors.request.use(
+  config => {
+    // if (router.history && router.history.current && router.history.current.path) {
+    //   config.headers['auth-href'] = router.history.current.path.slice(1)
+    // } else {
+    //   config.headers['auth-href'] = 'nopage'
+    // }
+    // var authHref = config.url
+    // if (authHref.match(/^\/admin\/(\S*)\/\d$/) != null) {
+    //   config.headers['auth-href'] = authHref.match(/^\/admin\/(\S*)\/\d$/)[1]
+    // } else {
+    //   config.headers['auth-href'] = authHref.match(/^\/admin\/(\S*)$/)[1]
+    // }
+    // // var substr1 = authHref.match(/\/admin(\S*)/)
+    // config.headers['X-Requested-With'] = 'XmlHttpRequest'
+    // if (store.getters.token) {
+    //   config.headers['X-Token'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+    // }
+    if (store.getters.token) {
+      // let each request carry token
+      // ['X-Token'] is a custom headers key
+      // please modify it according to the actual situation
+      // console.log(getToken());
+      config.headers['Authorization'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+    }
+    return config
+  },
+  error => {
+    // Do something with request error
+    console.log(error) // for debug
+    Promise.reject(error)
+  }
+)
 
 // response 拦截器
 service.interceptors.response.use(

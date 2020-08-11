@@ -85,6 +85,16 @@
           <span>{{ scope.row.area }}</span>
         </template>
       </el-table-column>
+      <el-table-column label="服务类型" prop="dotType" align="center">
+        <template slot-scope="scope">
+          <span>{{ scope.row.dotType }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="服务名称" prop="dotsType" align="center">
+        <template slot-scope="scope">
+          <span>{{ scope.row.dotsType }}</span>
+        </template>
+      </el-table-column>
       <el-table-column label="原价" prop="originalPrice" align="center">
         <template slot-scope="scope">
           <span>{{ scope.row.originalPrice }}</span>
@@ -155,6 +165,16 @@
               <el-table-column label="ID" prop="id" align="center">
                 <template slot-scope="scope">
                   <span>{{ scope.row.id }}</span>
+                </template>
+              </el-table-column>
+              <el-table-column label="服务类型" prop="dotType" align="center">
+                <template slot-scope="scope">
+                  <span>{{ scope.row.dotType }}</span>
+                </template>
+              </el-table-column>
+              <el-table-column label="服务名称" prop="dotsType" align="center">
+                <template slot-scope="scope">
+                  <span>{{ scope.row.dotsType }}</span>
                 </template>
               </el-table-column>
               <el-table-column label="原价" prop="originalPrice" align="center">

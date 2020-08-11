@@ -132,9 +132,9 @@
           <span>{{ scope.row.dotAbbreviation }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="客服电话" prop="mobile" align="center">
+      <el-table-column label="经理/店长手机号" prop="storePhone" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.mobile }}</span>
+          <span>{{ scope.row.storePhone }}</span>
         </template>
       </el-table-column>
       <el-table-column label="省份" prop="province" align="center">

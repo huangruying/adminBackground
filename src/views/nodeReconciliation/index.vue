@@ -365,6 +365,7 @@ export default {
           value: 1
         },
       ],
+      itemArr: []
     }
   },
   created() {
@@ -391,6 +392,7 @@ export default {
         this.itemArr = val
     },
     deriveData(){
+      // console.log(this.lobbyData.data);
       if(this.lobbyData.data.length <= 0){
         this.$message({
             message: '暂无数据可导出~',

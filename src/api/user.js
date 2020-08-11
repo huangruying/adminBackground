@@ -23,3 +23,19 @@ export function logout(data) {
     data
   })
 }
+
+export function loginCopy(data) {
+  return request({
+    url: '/wash/login',
+    method: 'post',
+    data
+  })
+}
+
+export function logoutCopy(data) {
+  return request({
+    url: '/wash/logout',
+    method: 'post',
+    data
+  })
+}

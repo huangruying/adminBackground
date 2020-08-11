@@ -87,9 +87,9 @@
           <span>{{ scope.row.alias }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="价格" prop="name" align="center">
+      <el-table-column label="价格" prop="totalAmount" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.name }}</span>
+          <span>{{ scope.row.totalAmount }}</span>
         </template>
       </el-table-column>
       <el-table-column label="订单总数" prop="totalOrder" align="center">

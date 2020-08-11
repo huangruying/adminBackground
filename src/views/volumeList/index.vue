@@ -192,6 +192,7 @@
               </el-form-item> -->
               <el-form-item :label="itemPicker" prop="time" style="width: 100%" v-if="!period" :rules="[{ type: 'array', required: true, message: '请选择时间', trigger: 'change' }]">
                  <el-date-picker
+                    :key="'period2'"
                     style="width:50%"
                     v-model="itemObj.time"
                     type="daterange"
@@ -201,12 +202,12 @@
                     range-separator="至"
                     start-placeholder="有效期开始"
                     end-placeholder="有效期结束"
-                    :picker-options="pickerOptions"
                     @blur="changePicker"
                   ></el-date-picker>
               </el-form-item>
-              <el-form-item :label="itemPicker" prop="failureTime" style="width: 100%" v-show="period" :rules="[{ required: true, message: '请选择时间', trigger: 'change' }]">
+              <el-form-item :label="itemPicker" prop="failureTime" style="width: 100%" v-if="period" :rules="[{ required: true, message: '请选择时间', trigger: 'change' }]">
                   <el-date-picker
+                    :key="'period'"
                     v-model="itemObj.failureTime"
                     type="datetime"
                     default-time="23:59:59"
@@ -1023,7 +1024,7 @@ export default {
       this.$forceUpdate()
     },
     remove(item){
-      this.open('确定删除？' , item.cid)
+      this.open('确定删除？' , item.id)
     },
     open(text,id) {
         this.$confirm( text , '提示', {
